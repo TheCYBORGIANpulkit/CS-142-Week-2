@@ -54,28 +54,44 @@ class Linkedlist{
         return i+1;
     }
     void InsertAt(int pos, int val){
-        //create a new node
-        Node*temp = new Node;
-        //insert data in it
-        temp->data = val;
-        //
-        if(pos==1){
+       //in case the list is empty
+       if(tail == NULL && head == NULL){
+            Node* temp = new Node;
+        //inserting data in the new node
+            temp->data = val;
             head = temp;
             tail = temp;
-        }
-        else{
-        //counter should be at last element)
-            //moving the pointer
-              Node* current = head;
-              int i=1;
-            while(i<pos-1){
-                    i++;
-                current = current->next;
-            }
-            temp->next = current->next;
-            current->next=temp;
-        }
+       }
 
+       else{
+             Node* temp = new Node;
+                //inserting the data2
+               temp->data = val;
+           if(pos == 1){
+               temp->next = head;
+               head = temp;
+           }
+           else{
+               //a pointer which moves to the pos
+               Node* current = head;
+               int i=1;
+               while(i< pos-1){
+                   current = current->next;
+                   i++;
+               }
+                if(current == tail){
+                   //connecting the links
+                    temp->next = current->next;
+                    current->next = temp;
+                    tail = temp;
+               }
+               else{
+                    //connecting the links
+                    temp->next = current->next;
+                    current->next = temp;
+               }
+           }
+       }
     }
 
     void Display(){
